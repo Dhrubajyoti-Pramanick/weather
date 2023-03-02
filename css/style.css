@@ -1,12 +1,60 @@
-.my-weather{
-    color: white;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+body {
+  background-color: #3a34eb;
+  font-family: "Poppins", sans-serif;
 }
+.my-weather-container {
+  color: white;
+  text-align: center;
+}
+.nav-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+input[placeholder="|"] {
+  color: white;
+}
+.nav-logo {
+  max-width: 4rem;
+  filter: invert(100%) sepia(1%) saturate(2%) hue-rotate(278deg)
+    brightness(109%) contrast(100%);
+}
+#place {
+  text-align: center;
+  background-color: #3a34eb;
+  color: white;
+  font-size: 3.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  border-style: none;
+  outline: none;
+}
+#place::placeholder {
+  color: white;
+}
+
 .celsius {
-    font-size: 3rem;
+  font-size: 5rem;
 }
-.feel{
-    color: aqua;
+.temperature {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
-.weather-logo{
-    width: 6rem;;
+.feel {
+  color: aqua;
+  font-size: 1.5rem;
+}
+.weather-logo {
+  padding-top: 1rem;
+  width: 8rem;
+}
+#description {
+  font-size: 1rem;
+}
+.text-descrip {
+  padding-top: 1rem;
+  font-size: 1.5rem;
 }
