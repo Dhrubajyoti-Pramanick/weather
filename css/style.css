@@ -1,9 +1,12 @@
 .my-weather{
     color: white;
 }
-.cloud {
-    max-width: 10%;
-}
 .celsius {
     font-size: 3rem;
+}
+.feel{
+    color: aqua;
+}
+.weather-logo{
+    width: 6rem;;
 }
