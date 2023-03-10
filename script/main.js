@@ -34,9 +34,9 @@ async function getWeatherData() {
   // temperature
   document.getElementById("temp").innerHTML = `<span class="celsius">${
     response.current.temp_f
-  }°</span> <br/> <span class="feel">Feels Like ${parseInt(
+  }°F</span> <br/> <span class="feel">Feels Like ${parseInt(
     response.current.temp_f - 3
-  )}°</span>`;
+  )}°F</span>`;
   document.getElementById(
     "description"
   ).innerHTML = `<p class="text-descrip">Make the most of this nice Weather that I generated for you. Or else.</p>`;
@@ -55,7 +55,33 @@ async function getWeatherData() {
 //     cursor = true;
 //   }
 // }, speed);
+var cursor = true;
+function reveal() {
+  if (cursor) {
+    document.getElementById("places").style.opacity = 0;
+    cursor = false;
+  } else {
+    document.getElementById("places").style.opacity = 1;
+    cursor = true;
+  }
+}
 
+const dropDown = document.getElementsByClassName("dropDown");
+for (let i = 0; i < dropDown.length; i++) {
+  dropDown[i].addEventListener("click", () => {
+    document.getElementById("place").value = dropDown[i].innerHTML;
+    locate = document.getElementById("place").value;
+    getWeatherData();
+    
+    if (cursor) {
+      document.getElementById("places").style.opacity = 0;
+      cursor = false;
+    } else {
+      document.getElementById("places").style.opacity = 1;
+      cursor = true;
+    }
+  });
+}
 document.getElementById("place").addEventListener("keyup", function (event) {
   if (event.code === "Enter") {
     event.preventDefault();

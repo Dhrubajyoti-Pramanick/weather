@@ -31,10 +31,28 @@ input[placeholder="|"] {
   border-style: none;
   outline: none;
 }
+.search {
+  /* background-color: white; */
+  border-radius: 1rem;
+}
 #place::placeholder {
   color: white;
 }
-
+#places{
+  opacity: 1;
+  border-radius: 1rem;
+  background-color: white;
+  height: 4rem;
+  overflow: scroll;
+}
+#places li{
+  list-style: none;
+  color: black;
+}
+.dropDown {
+  text-decoration: none;
+  color: black;
+}
 .celsius {
   font-size: 5rem;
 }
