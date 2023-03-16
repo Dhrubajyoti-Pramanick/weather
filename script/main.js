@@ -1,83 +1,31 @@
+// const url=require('url');
 let locate;
-async function getWeatherData() {
-  //asynchronous function
-
-  const response = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${locate}&aqi=no`
-  ).then(function (res) {
-    console.log(res);
-    return res.json();
-  });
-  console.log("response", response);
-  console.log(response.location);
-  console.log(response.current);
-  document.getElementById("place").value = response.location.name;
-
-  if (response.current.condition.text == "Sunny") {
-    document.getElementById(
-      "weatherImage"
-    ).innerHTML = `<img class="weather-logo" src="./images/sunny.svg">`;
-  } else if (response.current.condition.text == "Rainy") {
-    document.getElementById(
-      "weatherImage"
-    ).innerHTML = `<img class="weather-logo" src="./images/rainy.svg">`;
-  } else if (response.current.condition.text == "Partly cloudy") {
-    document.getElementById(
-      "weatherImage"
-    ).innerHTML = `<img class="weather-logo" src="./images/partlyCloudy.svg">`;
-  } else {
-    document.getElementById(
-      "weatherImage"
-    ).innerHTML = `<img class="weather-logo" src="./images/cloudy.svg">`;
-  }
-
-  // temperature
-  document.getElementById("temp").innerHTML = `<span class="celsius">${
-    response.current.temp_f
-  }°F</span> <br/> <span class="feel">Feels Like ${parseInt(
-    response.current.temp_f - 3
-  )}°F</span>`;
-  document.getElementById(
-    "description"
-  ).innerHTML = `<p class="text-descrip">Make the most of this nice Weather that I generated for you. Or else.</p>`;
-  console.log(response.location.country);
-}
-
-// blink
-// var cursor = true;
-// var speed = 1800;
-// let interval = setInterval(() => {
-//   if(cursor) {
-//     document.getElementById('place').style.opacity = 0;
-//     cursor = false;
-//   }else {
-//     document.getElementById('place').style.opacity = 1;
-//     cursor = true;
-//   }
-// }, speed);
+const dropDown = document.getElementsByClassName("dropDown");
+let dropDown_place;
 var cursor = true;
 function reveal() {
   if (cursor) {
-    document.getElementById("places").style.opacity = 0;
+    document.getElementById("places").style.opacity = 1;
     cursor = false;
   } else {
-    document.getElementById("places").style.opacity = 1;
+    document.getElementById("places").style.opacity = 0;
     cursor = true;
   }
 }
 
-const dropDown = document.getElementsByClassName("dropDown");
+// const dropDown = document.getElementsByClassName("dropDown");
 for (let i = 0; i < dropDown.length; i++) {
   dropDown[i].addEventListener("click", () => {
     document.getElementById("place").value = dropDown[i].innerHTML;
     locate = document.getElementById("place").value;
+    dropDown_place = dropDown[i];
     getWeatherData();
-    
+
     if (cursor) {
-      document.getElementById("places").style.opacity = 0;
+      document.getElementById("places").style.opacity = 1;
       cursor = false;
     } else {
-      document.getElementById("places").style.opacity = 1;
+      document.getElementById("places").style.opacity = 0;
       cursor = true;
     }
   });
@@ -94,3 +42,57 @@ document.getElementById("place").addEventListener("keyup", function (event) {
     // document.getElementById('place').style.opacity = 1;
   }
 });
+// const url = require('url');
+
+async function getWeatherData() {
+  //asynchronous function
+  const response = await fetch(
+    // `http://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${locate}&aqi=no`
+    `http://localhost:8000/weather/?myserver=${locate}`
+  ).then(function (res) {
+    console.log(res);
+    return res.json();
+  });
+  console.log("response", response);
+  console.log(response.location);
+  console.log(response.condition);
+
+  if (response.location === dropDown_place.innerHTML) {
+    // js for custom api
+    if (response.condition == "Sunny") {
+      document.getElementById(
+        "weatherImage"
+      ).innerHTML = `<img class="weather-logo" src="./images/sunny.svg">`;
+    } else if (response.condition == "Rainy") {
+      document.getElementById(
+        "weatherImage"
+      ).innerHTML = `<img class="weather-logo" src="./images/rainy.svg">`;
+    } else if (response.condition == "Partly cloudy") {
+      document.getElementById(
+        "weatherImage"
+      ).innerHTML = `<img class="weather-logo" src="./images/partlyCloudy.svg">`;
+    } else if (response.condition == "Overcast") {
+      document.getElementById(
+        "weatherImage"
+      ).innerHTML = `<img class="weather-logo" src="./images/overcast.svg">`;
+    } else if (response.condition == "Mist") {
+      document.getElementById(
+        "weatherImage"
+      ).innerHTML = `<img class="weather-logo" src="./images/mist.svg">`;
+    } else {
+      document.getElementById(
+        "weatherImage"
+      ).innerHTML = `<img class="weather-logo" src="./images/cloudy.svg">`;
+    }
+    // // temperature js for custom api
+    document.getElementById("temp").innerHTML = `<span class="celsius">${
+      response.farhenheit
+    }°F</span> <br/> <span class="feel">Feels Like ${parseInt(
+      response.farhenheit - 3
+    )}°F</span>`;
+    document.getElementById(
+      "description"
+    ).innerHTML = `<p class="text-descrip">Make the most of this nice Weather that I generated for you. Or else.</p>`;
+    console.log(response.farhenheit);
+  }
+}
