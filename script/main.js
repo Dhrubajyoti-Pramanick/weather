@@ -59,23 +59,23 @@ async function getWeatherData() {
 
   if (response.location === dropDown_place.innerHTML) {
     // js for custom api
-    if (response.condition == "Sunny") {
+    if (response.condition === "Sunny") {
       document.getElementById(
         "weatherImage"
       ).innerHTML = `<img class="weather-logo" src="./images/sunny.svg">`;
-    } else if (response.condition == "Rainy") {
+    } else if (response.condition === "Rainy") {
       document.getElementById(
         "weatherImage"
       ).innerHTML = `<img class="weather-logo" src="./images/rainy.svg">`;
-    } else if (response.condition == "Partly cloudy") {
+    } else if (response.condition === "Partly cloudy") {
       document.getElementById(
         "weatherImage"
       ).innerHTML = `<img class="weather-logo" src="./images/partlyCloudy.svg">`;
-    } else if (response.condition == "Overcast") {
+    } else if (response.condition === "Overcast") {
       document.getElementById(
         "weatherImage"
       ).innerHTML = `<img class="weather-logo" src="./images/overcast.svg">`;
-    } else if (response.condition == "Mist") {
+    } else if (response.condition === "Mist") {
       document.getElementById(
         "weatherImage"
       ).innerHTML = `<img class="weather-logo" src="./images/mist.svg">`;
