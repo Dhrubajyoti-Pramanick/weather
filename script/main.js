@@ -36,18 +36,12 @@ document.getElementById("place").addEventListener("keyup", function (event) {
     locate = document.getElementById("place").value;
     console.log(locate);
     getWeatherData();
-
-    //stop blink
-    // clearInterval(interval);
-    // document.getElementById('place').style.opacity = 1;
   }
 });
-// const url = require('url');
 
 async function getWeatherData() {
   //asynchronous function
   const response = await fetch(
-    // `http://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${locate}&aqi=no`
     `http://localhost:8000/weather/?myserver=${locate}`
   ).then(function (res) {
     console.log(res);
