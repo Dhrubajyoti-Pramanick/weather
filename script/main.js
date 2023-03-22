@@ -1,4 +1,3 @@
-// const url=require('url');
 let locate;
 const dropDown = document.getElementsByClassName("dropDown");
 let dropDown_place;
@@ -13,7 +12,6 @@ function reveal() {
   }
 }
 
-// const dropDown = document.getElementsByClassName("dropDown");
 for (let i = 0; i < dropDown.length; i++) {
   dropDown[i].addEventListener("click", () => {
     document.getElementById("place").value = dropDown[i].innerHTML;
@@ -78,7 +76,7 @@ async function getWeatherData() {
         "weatherImage"
       ).innerHTML = `<img class="weather-logo" src="./images/cloudy.svg">`;
     }
-    // // temperature js for custom api
+    // temperature js for custom api
     document.getElementById("temp").innerHTML = `<span class="celsius">${
       response.farhenheit
     }°F</span> <br/> <span class="feel">Feels Like ${parseInt(
